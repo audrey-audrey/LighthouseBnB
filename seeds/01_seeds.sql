@@ -4,13 +4,13 @@ ALTER password SET DEFAULT 'Use $2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGev
 
 INSERT INTO users (name, email)
 VALUES 
-('Eva Stanley', 'sebastiananguerra@ymail.com')
-('Louisa Meyer', 'jacksonrose@hotmail.com')
-('Dominic Parks', 'victoriablackwell@outlook.com')
-('Sue Luna', 'jaconvincent@gmx.com')
-('Rosalie Garza', 'jacksondavid@gmx.com')
-('Etta West', 'charlielevy@yahoo.com')
-('Margaret Wong', 'makaylaweiss@icloud.com')
+('Eva Stanley', 'sebastiananguerra@ymail.com'),
+('Louisa Meyer', 'jacksonrose@hotmail.com'),
+('Dominic Parks', 'victoriablackwell@outlook.com'),
+('Sue Luna', 'jaconvincent@gmx.com'),
+('Rosalie Garza', 'jacksondavid@gmx.com'),
+('Etta West', 'charlielevy@yahoo.com'),
+('Margaret Wong', 'makaylaweiss@icloud.com'),
 ('Leroy Hart', 'jaycereynolds@inbox.com');
 
 --Alter column password to drop default for additional users
