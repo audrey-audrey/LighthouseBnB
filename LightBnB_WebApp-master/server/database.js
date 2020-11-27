@@ -109,7 +109,7 @@ exports.getAllReservations = getAllReservations;
  * @param {*} limit The number of results to return.
  * @return {Promise<[{}]>}  A promise to the properties.
  */
-const getAllProperties = function(options, limit = 10) {
+const getAllProperties = function(options, limit) {
   // 1
   const queryParams = [];
   // 2
@@ -123,25 +123,21 @@ const getAllProperties = function(options, limit = 10) {
   if (options.city) {
     queryParams.push(`%${options.city}%`);
     queryString += `${queryParams.length > 1 ? 'AND' : 'WHERE'} city LIKE $${queryParams.length} `;
-    console.log('city:', queryParams);
   }
 
   if (options.owner_id) {
     queryParams.push(`%${options.owner_id}%`);
     queryString += `${queryParams.length > 1 ? 'AND' : 'WHERE '} owner_id = $${queryParams.length} `;
-    console.log('owner:', queryParams);
   }
 
   if (options.minimum_price_per_night) {
     queryParams.push(`${options.minimum_price_per_night * 100}`);
     queryString += `${queryParams.length > 1 ? 'AND' : 'WHERE'} cost_per_night >= $${queryParams.length} `;
-    console.log('min:', queryParams);
   }
 
   if (options.maximum_price_per_night) {
     queryParams.push(`${options.maximum_price_per_night * 100}`);
     queryString += `${queryParams.length > 1 ? 'AND' : 'WHERE'} cost_per_night <= $${queryParams.length} `;
-    console.log('max:', queryParams);
   }
 
   if (options.minimum_rating) {
@@ -150,12 +146,10 @@ const getAllProperties = function(options, limit = 10) {
     GROUP BY properties.id
     HAVING avg(property_reviews.rating) >= $${queryParams.length} 
     `;
-    console.log('rating:', queryParams);
   } else {
     queryString += `
     GROUP BY properties.id
     `;
-    console.log('no rating:', queryParams);
   }
 
   // 4
@@ -164,8 +158,6 @@ const getAllProperties = function(options, limit = 10) {
   ORDER BY cost_per_night
   LIMIT $${queryParams.length};
   `;
-
-  console.log('end:', queryParams);
 
   // 5
   return pool.query(queryString, queryParams)
@@ -203,7 +195,7 @@ RETURNING *;
   const values = Object.values(property);
 
   return pool.query(queryString, values)
-    .then(res => console.log(res.rows))
+    .then(res => res.rows)
     .catch(err => console.log(err));
 };
 exports.addProperty = addProperty;
