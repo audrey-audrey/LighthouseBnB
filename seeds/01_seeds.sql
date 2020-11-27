@@ -1,6 +1,6 @@
 --Alter column password to set default to password ('password' in bcrypt)
 ALTER TABLE users
-ALTER password SET DEFAULT 'Use $2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.';
+ALTER password SET DEFAULT '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.';
 
 INSERT INTO users (name, email)
 VALUES 
